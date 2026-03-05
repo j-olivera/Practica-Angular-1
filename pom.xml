@@ -8,7 +8,7 @@
 		<version>4.0.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.component</groupId>
+	<groupId>com.componentPc</groupId>
 	<artifactId>pc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>pc</name>
