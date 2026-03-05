@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/components")
-@CrossOrigin(origins = "*") // <-- Agrega esto para que Angular pueda conectarse NOTA DE IA
+@CrossOrigin(origins = "http://localhost:4200")
 public class ComponentPcController {
     private final CreateComponentPc createComponentPc;
     private final DeleteComponentPc deleteComponentPc;
