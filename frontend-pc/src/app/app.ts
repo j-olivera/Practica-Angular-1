@@ -1,23 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { PcService } from './services/pc.service';
+import { JsonPipe } from '@angular/common'; // Importamos esto para ver el JSON crudo
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  template: `<h1>Prueba de conexión al Backend</h1>`, // Un HTML mínimo
+  imports: [JsonPipe], // Lo declaramos acá
+  template: `
+    <h1>Prueba de conexión al Backend</h1>
+
+    <h3 style="color: green">{{ mensajeEstado }}</h3>
+
+    <pre style="background: #eee; padding: 10px;">{{ listaComponentes | json }}</pre>
+  `,
 })
 export class AppComponent implements OnInit {
-  // Inyectamos tu servicio (igual que inyectás dependencias en Java)
+  mensajeEstado = 'Cargando datos...';
+  listaComponentes: any = []; // Acá vamos a guardar lo que llegue
+
   constructor(private pcService: PcService) {}
 
-  // Este metodo se ejecuta automáticamente cuando la página carga
   ngOnInit() {
     this.pcService.getAllComponents().subscribe({
       next: (datos) => {
-        console.log('¡Éxito! Me conecté al puerto 8080. Datos recibidos:', datos);
+        this.mensajeEstado = '¡Conexión Exitosa con Spring Boot! 🚀';
+        this.listaComponentes = datos; // Pasamos los datos a la variable visual
       },
       error: (error) => {
-        console.error('Falló la conexión. Revisá si Spring Boot está encendido o el CORS:', error);
+        this.mensajeEstado = 'Error al conectar (mirá la consola F12)';
+        console.error(error);
       },
     });
   }
