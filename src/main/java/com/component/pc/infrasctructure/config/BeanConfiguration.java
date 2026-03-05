@@ -1,14 +1,8 @@
 package com.component.pc.infrasctructure.config;
 
-import com.component.pc.application.ports.in.ComponentExistById;
-import com.component.pc.application.ports.in.CreateComponentPc;
-import com.component.pc.application.ports.in.DeleteComponentPc;
-import com.component.pc.application.ports.in.GetComponentPc;
+import com.component.pc.application.ports.in.*;
 import com.component.pc.application.ports.out.ComponentPcRepositoryPort;
-import com.component.pc.application.usecase.ComponentExistByIdImpl;
-import com.component.pc.application.usecase.DeleteComponentPcImpl;
-import com.component.pc.application.usecase.GetComponentPcImpl;
-import com.component.pc.application.usecase.RegisterComponentImpl;
+import com.component.pc.application.usecase.*;
 import com.component.pc.infrasctructure.adapters.ComponentPcMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,5 +30,9 @@ public class BeanConfiguration {
     @Bean
     public CreateComponentPc createComponentPc(ComponentPcRepositoryPort componentPcRepositoryPort,ComponentPcMapper componentPcMapper) {
         return new RegisterComponentImpl(componentPcRepositoryPort,componentPcMapper);
+    }
+    @Bean
+    public FindAllComponents  findAllComponents(ComponentPcRepositoryPort componentPcRepositoryPort,ComponentPcMapper componentPcMapper) {
+        return new FindAllComponentsImpl(componentPcRepositoryPort,componentPcMapper);
     }
 }

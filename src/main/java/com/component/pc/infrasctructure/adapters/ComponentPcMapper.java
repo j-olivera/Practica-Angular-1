@@ -4,6 +4,8 @@ import com.component.pc.application.dto.ComponentResponse;
 import com.component.pc.application.dto.SaveComponentCommand;
 import com.component.pc.domain.model.ComponentPc;
 
+import java.util.List;
+
 public class ComponentPcMapper {
     public ComponentPc toDomain(SaveComponentCommand command) {
         return ComponentPc.createComponent(
@@ -20,5 +22,8 @@ public class ComponentPcMapper {
                 componentPc.getMarca(),
                 componentPc.getPrice()
         );
+    }
+    public List<ComponentResponse> toResponseList(List<ComponentPc> componentPcs) {
+        return componentPcs.stream().map(this::toResponse).toList();
     }
 }
