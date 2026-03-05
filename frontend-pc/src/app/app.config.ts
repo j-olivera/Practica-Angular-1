@@ -1,4 +1,6 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection,
+  provideZonelessChangeDetection
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -9,6 +11,6 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(),
-
-  ]
+    provideZonelessChangeDetection() // se actualiza "manualmente" con un metodo en el complemento, en este caso lista-pc con un ChangeDetectorRef
+  ]   //por alguna razon no actualizaba, pero esto debería hacerlo angular automaticamente
 };
