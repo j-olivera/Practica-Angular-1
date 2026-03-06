@@ -27,4 +27,9 @@ export class PcService {
   saveComponent(componente: ComponentPc): Observable<ComponentPc> {
     return this.http.post<ComponentPc>(this.apiUrl, componente);
   }
+
+  //metodo para eliminar
+  deleteComponent(id:number): Observable<any>{
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }

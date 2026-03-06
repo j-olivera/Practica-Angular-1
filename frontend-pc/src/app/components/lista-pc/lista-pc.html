@@ -7,6 +7,7 @@
         <th>Pieza</th>
         <th>Marca</th>
         <th>Precio</th>
+        <th>Eliminar</th>
       </tr>
     </thead>
     <tbody>
@@ -16,6 +17,11 @@
           <td>{{comp.piece_name}}</td>
           <td>{{comp.marca}}</td>
           <td>{{comp.price}}</td>
+          <td style="text-align: center">
+            <button (click)="delete(comp.id)" style="padding: 5px 10px; background-color: #007bff; color: #cccccc">
+              Eliminar
+            </button>
+          </td>
         </tr>
       } @empty {
         <tr>

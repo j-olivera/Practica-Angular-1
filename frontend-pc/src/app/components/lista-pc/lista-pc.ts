@@ -24,4 +24,18 @@ export class ListaPc implements OnInit {
       },
     });
   }
+  delete(id:number | undefined){
+    if(!id) return;
+    if(confirm('Estas seguro de que queres eliminar esta pieza?')){
+      this.pcService.deleteComponent(id).subscribe({
+        next:()=>{
+          this.componentes = this.componentes.filter(comp => comp.id !== id);
+          this.cdr.detectChanges();
+        },
+        error: (err) => {
+          console.error('Error cargando los datos', err);
+        }
+      });
+    }
+  }
 }
